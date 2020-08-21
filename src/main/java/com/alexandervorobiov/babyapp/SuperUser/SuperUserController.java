@@ -27,7 +27,7 @@ public class SuperUserController {
     private final ChildRepo childRepo;
 
 
-
+    @CrossOrigin(origins = "http://lockalhost:3000")
     @GetMapping("/admin")
     public ResponseEntity getUsers() throws JsonProcessingException { // poprawic front
         List<SuperUserDto> users = superUserService.findAllUsers();
@@ -41,7 +41,7 @@ public class SuperUserController {
     }
 
 
-
+    @CrossOrigin(origins = "http://lockalhost:3000")
     @PostMapping("/users")
     public ResponseEntity addUser(@RequestBody SuperUserRegistrationDto superUserDto) {
         Optional<SuperUserRegistrationDto> userFromDb = superUserService.findByUserName(superUserDto.getName());
