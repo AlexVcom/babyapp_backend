@@ -1,6 +1,7 @@
 package com.alexandervorobiov.babyapp.SuperUser;
 
-import com.alexandervorobiov.babyapp.Child.*;
+import com.alexandervorobiov.babyapp.Child.ChildRepo;
+import com.alexandervorobiov.babyapp.Child.ChildService;
 import com.alexandervorobiov.babyapp.SuperUser.dto.SuperUserDto;
 import com.alexandervorobiov.babyapp.SuperUser.dto.SuperUserRegistrationDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 
 //@AllArgsConstructor

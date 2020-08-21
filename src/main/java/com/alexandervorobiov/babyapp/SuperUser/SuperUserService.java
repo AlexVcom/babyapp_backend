@@ -38,14 +38,15 @@ public class SuperUserService {
         List<SuperUserDto> superUserDto = superUserRepo.findAll()
                 .stream()
                 .map(u -> modelMapper.map(u, SuperUserDto.class))
+
                 .collect(Collectors.toList());
         return superUserDto;
     }
 
-    public Optional<SuperUserRegistrationDto> findByUserName (String superUser){
+    public Optional<SuperUserRegistrationDto> findByUserName(String superUser) {
         Optional<SuperUserRegistrationDto> userName = superUserRepo.findByName(superUser)
                 .stream()
-                .map(n -> modelMapper.map(n,SuperUserRegistrationDto.class))
+                .map(n -> modelMapper.map(n, SuperUserRegistrationDto.class))
                 .findFirst();
         return userName;
     }
@@ -60,21 +61,38 @@ public class SuperUserService {
         SuperUserDto superUserDto = superUserRepo.findById(id)
                 .map(user -> modelMapper.map(user, SuperUserDto.class))
                 .orElseThrow(() -> new RuntimeException("Super user not found for " + id));
+//        superUserDto.getChildren()
+//                .forEach(childDetailsDto -> childDetailsDto.getHint()
+//                        .addAll(hintRepository.findForHints(childDetailsDto.getAge())
+//                                .stream()
+//                                .map(h-> new HintDto(h.getDescription()))
+//                                .collect(Collectors.toList())
+//        ));
+        superUserDto.getChildren()
+                .forEach(childDetailsDto -> {
+                            childDetailsDto.getHint()
+                                    .addAll(hintRepository.findForHints(childDetailsDto.getAge())
+                                            .stream()
+                                            .map(h -> new HintDto(h.getDescription()))
+                                            .collect(Collectors.toList()));
 
-        superUserDto.getChildren()
-                .forEach(childDetailsDto -> childDetailsDto.getHint()
-                        .addAll(hintRepository.findForHints(childDetailsDto.getAge())
-                                .stream()
-                                .map(h-> new HintDto(h.getDescription()))
-                                .collect(Collectors.toList())
-        ));
-        superUserDto.getChildren()
-                .forEach(childDetailsDto -> childDetailsDto.getTips()
-                .addAll(foodTipsRepository.findForTips(childDetailsDto.getAge())
-                        .stream()
-                        .map(t->new FoodTipDto(t.getDescription()))
-                        .collect(Collectors.toList())
-                ));
+                            childDetailsDto.getTips()
+                                    .addAll(foodTipsRepository.findForTips(childDetailsDto.getAge())
+                                            .stream()
+                                            .map(t -> new FoodTipDto(t.getDescription()))
+                                            .collect(Collectors.toList()));
+
+                        }
+                );
+
+
+//        superUserDto.getChildren()
+//                .forEach(childDetailsDto -> childDetailsDto.getTips()
+//                        .addAll(foodTipsRepository.findForTips(childDetailsDto.getAge())
+//                                .stream()
+//                                .map(t -> new FoodTipDto(t.getDescription()))
+//                                .collect(Collectors.toList())
+//                        ));
 
 //        tipsService.setTips(superUserDto);
 //        tipsService.setHints(superUserDto);
@@ -83,9 +101,9 @@ public class SuperUserService {
 
 
     public SuperUser saveSuperUser(SuperUserRegistrationDto superUserDto) {
-        SuperUser superUser = modelMapper.map(superUserDto,SuperUser.class);
+        SuperUser superUser = modelMapper.map(superUserDto, SuperUser.class);
         for (ChildRegistrationDto c : superUserDto.getChildren()) {
-                    modelMapper.map(c, Child.class);
+            modelMapper.map(c, Child.class);
         }
         superUserRepo.save(superUser);
         return superUser;
@@ -94,6 +112,7 @@ public class SuperUserService {
     public void deleteSuperUser(Long id) {
         superUserRepo.deleteById(id);
     }
+
     public SuperUser updateSuperUser(SuperUserDto superUserDto) {
         SuperUser superUser = modelMapper.map(superUserDto, SuperUser.class);
 //        superUser.setId(id);

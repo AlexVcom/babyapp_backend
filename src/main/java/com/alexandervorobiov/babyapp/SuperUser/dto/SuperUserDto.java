@@ -23,6 +23,7 @@ import javax.persistence.Enumerated;
 import javax.print.attribute.standard.MediaSize;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 @Data
@@ -49,10 +50,12 @@ public class SuperUserDto {
 //    @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", message = "Nie własciwy email")
     private String email;
     private String telephone;
+    @JsonFormat(pattern="MM/dd/yyyy ")
+    private String creationDateTime;
 
 
-//    private List<FoodTipDto> childTips = new ArrayList<>();
-//    private List<HintDto> childHints = new ArrayList<>();
+//    private List<FoodTip> tips;
+//    private List<Hint> hint;
     private Set<ChildDetailsDto> children = new HashSet<>();
 
 
