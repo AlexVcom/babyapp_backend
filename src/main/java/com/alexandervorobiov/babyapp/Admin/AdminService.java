@@ -11,5 +11,4 @@ import javax.transaction.Transactional;
 @Transactional
 public class AdminService {
 
-    private final AdminRepo adminRepo;
 }

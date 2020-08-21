@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class FoodTip { //dto
+public class FoodTip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
