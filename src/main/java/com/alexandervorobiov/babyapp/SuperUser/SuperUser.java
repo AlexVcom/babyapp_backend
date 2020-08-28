@@ -1,12 +1,14 @@
 package com.alexandervorobiov.babyapp.SuperUser;
 
 import com.alexandervorobiov.babyapp.Child.Child;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Set;
 
@@ -32,18 +34,18 @@ public class SuperUser {
     @JoinColumn(name = "super_user_id")
     private Set<Child> children;
 
-    private ZonedDateTime creationDateTime;
+    private LocalDateTime creationDateTime;
 
     @PrePersist
     public void prePersist() {
-        creationDateTime = ZonedDateTime.now();
+        creationDateTime = LocalDateTime.now();
     }
 
-    private ZonedDateTime updateDateTime;
+    private LocalDateTime updateDateTime;
     @PreUpdate
     public void preUpdate()
     {
-        updateDateTime = ZonedDateTime.now();
+        updateDateTime = LocalDateTime.now();
     }
 
 }

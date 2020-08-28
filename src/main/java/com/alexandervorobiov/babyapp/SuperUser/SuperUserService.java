@@ -62,22 +62,21 @@ public class SuperUserService {
                 .orElseThrow(() -> new RuntimeException("Super user not found for " + id));
 
         superUserDto.getChildren()
-                .forEach(childDetailsDto -> childDetailsDto.getHint()
-                        .addAll(hintRepository.findForHints(childDetailsDto.getAge())
-                                .stream()
-                                .map(h-> new HintDto(h.getDescription()))
-                                .collect(Collectors.toList())
-        ));
-        superUserDto.getChildren()
-                .forEach(childDetailsDto -> childDetailsDto.getTips()
-                .addAll(foodTipsRepository.findForTips(childDetailsDto.getAge())
-                        .stream()
-                        .map(t->new FoodTipDto(t.getDescription()))
-                        .collect(Collectors.toList())
-                ));
+                .forEach(childDetailsDto -> {
+                    childDetailsDto.getHint()
+                            .addAll(hintRepository.findForHints(childDetailsDto.getAge())
+                                    .stream()
+                                    .map(h-> new HintDto(h.getDescription()))
+                                    .collect(Collectors.toList()));
 
-//        tipsService.setTips(superUserDto);
-//        tipsService.setHints(superUserDto);
+                    childDetailsDto.getTips()
+                            .addAll(foodTipsRepository.findForTips(childDetailsDto.getAge())
+                                    .stream()
+                                    .map(t->new FoodTipDto(t.getDescription()))
+                                    .collect(Collectors.toList()));
+                }
+        );
+
         return superUserDto;
     }
 
@@ -96,7 +95,6 @@ public class SuperUserService {
     }
     public SuperUser updateSuperUser(SuperUserDto superUserDto) {
         SuperUser superUser = modelMapper.map(superUserDto, SuperUser.class);
-//        superUser.setId(id);
         superUserRepo.save(superUser);
         return superUser;
     }
