@@ -2,12 +2,14 @@ package com.alexandervorobiov.babyapp.SuperUser.dto;
 
 
 import com.alexandervorobiov.babyapp.Child.ChildRegistrationDto;
-import com.alexandervorobiov.babyapp.Child.hint.HintDto;
-import com.alexandervorobiov.babyapp.Child.tip.FoodTipDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 
@@ -16,15 +18,14 @@ import java.util.List;
 public class SuperUserRegistrationDto {
 
     private Long id;
-    //    @Pattern(regexp = "^[a-zA-Z0-9]{8,20}$", message = "Nazwa powinna zawierać 8-20 znaków a-z, A-Z, 0-9")
+//        @Pattern(regexp = "^[a-zA-Z0-9]{8,20}$", message = "Nazwa powinna zawierać 8-20 znaków a-z, A-Z, 0-9")
 //    @NotBlank
 //    @NotNull
     @JsonProperty("parentName") // nazwa na froncie
     private String name; //parentnme
-    //    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", message = "Hasło powinno zawierać 8-20 znaków małą literę, dużą literę i cyfrę")
+//        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", message = "Hasło powinno zawierać 8-20 znaków małą literę, dużą literę i cyfrę")
     private String password;
-    //@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", message = "Hasło powinno zawierać 8-20 znaków małą literę, dużą literę i cyfrę")
-//    private String confirmPassword;
+//    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", message = "Hasło powinno zawierać 8-20 znaków małą literę, dużą literę i cyfrę")
 //    @Email
 //    @NotBlank
 //    @NotNull

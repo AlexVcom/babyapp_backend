@@ -23,6 +23,7 @@ public class ChildDetailsDto {
     private Double weight;
     private Double growth;
     private FoodType foodType;
+    private String birthDate;
     private List<FoodTipDto> tips = new ArrayList<>(); //tips dto
     private List<HintDto> hint = new ArrayList<>(); // hint dto
 

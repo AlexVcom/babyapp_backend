@@ -23,6 +23,7 @@ import javax.persistence.Enumerated;
 import javax.print.attribute.standard.MediaSize;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Data
@@ -49,6 +50,7 @@ public class SuperUserDto {
 //    @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", message = "Nie własciwy email")
     private String email;
     private String telephone;
+    private LocalDateTime creationDateTime;
 
 
 //    private List<FoodTipDto> childTips = new ArrayList<>();
