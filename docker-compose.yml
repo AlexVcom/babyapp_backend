@@ -1,6 +1,6 @@
 version: '3'
 services:
-  paramz-db:
+  baby-app-db:
     image: postgres:11
     ports:
       - 5433:5432
